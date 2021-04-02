@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require "rhubarb"
+
+canon = Rhubarb::Canon.new
+
+# canon.voices.each do |v|
+#   puts v
+#   talker = Mac::Say.new(voice: v)
+#   talker.say string: v
+# end
+
+# rng = RandomNameGenerator.new(RandomNameGenerator::CURSE)
+rng = RandomNameGenerator.flip_mode
+
+loop do
+  name = rng.compose
+  puts name
+  canon.yo(name)
+  # canon.yo(rng.compose)
+end
+
+
+
+
