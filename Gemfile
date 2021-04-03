@@ -7,6 +7,7 @@ gemspec
 
 gem "mac-say", "~> 0.2.1"
 gem "random_name_generator", "~> 2.0"
+gem "slop", "~> 4.8", ">= 4.8.2"
 
 group :development do
   gem "rake", "~> 13.0"

@@ -1,40 +1,42 @@
 # frozen_string_literal: true
 
-require_relative "rhubarb/version"
-require "pp"
-require "mac/say"
+require "logger"
 require "random_name_generator"
+require "time"
+
+require_relative "rhubarb/version"
+require_relative "rhubarb/orator"
 
 # Rhubarb
 module Rhubarb
   class Error < StandardError; end
-  # Your code goes here...
-
-  def self.yo
-    talker = Mac::Say.new(voice: :alex, rate: 200)
-    talker.say string: RandomNameGenerator.new(RandomNameGenerator::CURSE).compose
-  end
 
   # Rhubarb Cannon
   class Canon
-    attr_reader :voices
-
-    ALEX = Mac::Say.new(voice: :alex)
-    ALICE = Mac::Say.new(voice: :alice)
-    DANIEL = Mac::Say.new(voice: :daniel)
-    ELLEN = Mac::Say.new(voice: :ellen)
-    FRED = Mac::Say.new(voice: :fred)
-    KAREN = Mac::Say.new(voice: :karen)
-    THOMAS = Mac::Say.new(voice: :thomas)
-
-    SELECTED_VOICES = [ALEX, ALICE, DANIEL, ELLEN, FRED, KAREN, THOMAS].freeze
+    attr_reader :orator
 
     def initialize
-      @voices = Mac::Say.voices.collect { |v| v[:name] }
+      @orator = Orator.new
+      initialize_logger
+      initialize_recorder
     end
 
-    def yo(name = RandomNameGenerator.flip_mode.compose)
-      SELECTED_VOICES.sample.say string: name
+    def initialize_logger
+      time = Time.now.utc.iso8601
+      name = "logs/log.#{time}.log"
+      @logger = Logger.new(name)
+      @logger.level = Logger::DEBUG
+    end
+
+    def initialize_recorder
+      time = Time.now.utc.iso8601
+
+    end
+
+    def name(name = RandomNameGenerator.flip_mode.compose)
+      @logger.error name
+      @orator.speech name
+      name
     end
   end
 end

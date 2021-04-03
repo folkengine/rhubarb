@@ -6,6 +6,10 @@ RSpec.describe Rhubarb do
   end
 
   it "does something useful" do
+    # rhub = Rhubarb::Canon.new
+
+    Rhubarb::Orator.persona
+
     expect(false).to eq(true)
   end
 end
