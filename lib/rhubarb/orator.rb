@@ -42,6 +42,11 @@ module Rhubarb
       "why don't you give up?"
     ].freeze
 
+    def self.introduction
+      orator = Orator.new
+      orator.introduction
+    end
+
     def self.persona
       orator = Orator.new
       orator.persona
