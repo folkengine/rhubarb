@@ -5,6 +5,7 @@ require "rhubarb"
 require "slop"
 
 canon = Rhubarb::Canon.new
+FREQUENCY = 20
 
 opts = Slop.parse do |o|
   o.integer "-g", "--go", "Do a run", default: 5
@@ -27,28 +28,14 @@ opts = Slop.parse do |o|
 end
 
 if opts.go?
-  rng = RandomNameGenerator.new(RandomNameGenerator::ROMAN)
+  rng = RandomNameGenerator.new
+  rng_ru = RandomNameGenerator.new(RandomNameGenerator::FANTASY_RU)
   opts[:go].to_i.times do
-    name = rng.compose
-    if canon.fire(name)
-      puts name
-    end
+    name = if rand(1..FREQUENCY) == 1
+             rng_ru.compose
+           else
+             rng.compose
+           end
+    puts name if canon.fire(name)
   end
 end
-
-# # Rhubarb::Orator.roll_call
-# #
-# rng = RandomNameGenerator.new(RandomNameGenerator::CURSE)
-# # rng = RandomNameGenerator.new(RandomNameGenerator::ROMAN)
-# # rng = RandomNameGenerator.flip_mode
-#
-# loop do
-#   name = rng.compose
-#   puts name
-#   canon.name(name)
-#   # canon.yo(rng.compose)
-# end
-
-
-
-
