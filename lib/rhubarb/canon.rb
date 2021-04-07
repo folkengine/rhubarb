@@ -1,3 +1,5 @@
+require "translit"
+
 module Rhubarb
   # Rhubarb Cannon
   class Canon
@@ -22,13 +24,10 @@ module Rhubarb
       time = Time.now.utc.iso8601
     end
 
-    def fire(name = RandomNameGenerator.flip_mode.compose)
-      escaped_name = CGI.escape(name)
-      url = "#{BASE_URL}#{escaped_name}"
-
+    def fire(name: RandomNameGenerator.flip_mode.compose, cyrillic: false)
       begin
-        HTTParty.get(url)
-        name(name)
+        HTTParty.get(generate_url(name))
+        name(name: name, cyrillic: cyrillic)
         @logger.info name
         true
       rescue Errno::ECONNREFUSED
@@ -37,9 +36,17 @@ module Rhubarb
       end
     end
 
-    def name(name = RandomNameGenerator.flip_mode.compose)
-      @orator.speech name
+    def name(name: RandomNameGenerator.flip_mode.compose, cyrillic: false)
+      if cyrillic
+        @orator.speech Translit.convert(name, :english)
+      else
+        @orator.speech name
+      end
       name
+    end
+
+    def generate_url(name)
+      "#{BASE_URL}#{CGI.escape(name)}"
     end
   end
 end

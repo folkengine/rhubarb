@@ -90,7 +90,7 @@ module Rhubarb
       if rnd == 1
         alert EXTREME_FAILURE_MESSAGES.sample
       else
-        alert EXTREME_FAILURE_MESSAGES.sample
+        alert FAILURE_MESSAGES.sample
       end
     end
 

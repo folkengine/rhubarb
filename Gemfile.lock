@@ -50,6 +50,7 @@ GEM
       parser (>= 2.7.1.5)
     ruby-progressbar (1.11.0)
     slop (4.8.2)
+    translit (0.1.5)
     unicode-display_width (2.0.0)
 
 PLATFORMS
@@ -64,6 +65,7 @@ DEPENDENCIES
   rspec (~> 3.0)
   rubocop (~> 1.7)
   slop (~> 4.8, >= 4.8.2)
+  translit (~> 0.1.5)
 
 BUNDLED WITH
    2.2.14
