@@ -6,6 +6,8 @@ require "slop"
 
 opts = Slop.parse do |o|
   o.integer "-g", "--go", "Do a run", default: 5
+  o.bool "-s", "--short", "short syllables only"
+  o.bool "-c", "--cyrillic", "include cyrillic words"
   o.bool "-i", "--introduce", "Introduces Rhubarb" do
     Rhubarb::Orator.introduction
     exit
@@ -25,5 +27,5 @@ opts = Slop.parse do |o|
 end
 
 if opts.go?
-  Rhubarb.go(count: opts[:go].to_i, cyrillic: true)
+  Rhubarb.go(count: opts[:go].to_i, cyrillic: opts.cyrillic?, short: opts.short?)
 end

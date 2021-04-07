@@ -29,12 +29,12 @@ module Rhubarb
   end
 
   def self.fire(short: false)
-    name = short ? RNG.compose(3) : RNG.compose
+    name = short ? RNG.compose(2) : RNG.compose
     puts name if CANON.fire(name: name, cyrillic: false)
   end
 
   def self.fire_ru(short: false)
-    name = short ? RNG_RU.compose(3) : RNG_RU.compose
+    name = short ? RNG_RU.compose(2) : RNG_RU.compose
     puts name if CANON.fire(name: name, cyrillic: true)
   end
 end
