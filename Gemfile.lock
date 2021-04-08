@@ -55,6 +55,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  x86_64-darwin-19
 
 DEPENDENCIES
   httparty (~> 0.18.1)
@@ -68,4 +69,4 @@ DEPENDENCIES
   translit (~> 0.1.5)
 
 BUNDLED WITH
-   2.2.14
+   2.2.15
