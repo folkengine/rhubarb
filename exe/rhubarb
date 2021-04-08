@@ -12,12 +12,23 @@ opts = Slop.parse do |o|
     Rhubarb::Orator.introduction
     exit
   end
+  o.bool "-t", "--tod", "Introduces Tod" do
+    Rhubarb::Orator.tod
+    exit
+  end
   o.bool "-p", "--persona", "list off featured voices" do
     Rhubarb::Orator.persona
     exit
   end
   o.bool "-r", "--rollcall", "list off all voices" do
     Rhubarb::Orator.roll_call
+    exit
+  end
+  o.bool "-f", "--failure", "say failure messages" do
+    loop do
+      orator = Rhubarb::Orator.new
+      orator.failure
+    end
     exit
   end
   o.on "-v", "--version", "print the version" do

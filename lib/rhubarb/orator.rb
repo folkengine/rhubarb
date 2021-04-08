@@ -52,6 +52,11 @@ module Rhubarb
       orator.persona
     end
 
+    def self.tod
+      orator = Orator.new
+      orator.tod
+    end
+
     def self.roll_call
       orator = Orator.new
       orator.roll_call
@@ -86,12 +91,16 @@ module Rhubarb
     end
 
     def failure
-      rnd = rand(1..100)
+      rnd = rand(1..10)
       if rnd == 1
         alert EXTREME_FAILURE_MESSAGES.sample
       else
         alert FAILURE_MESSAGES.sample
       end
+    end
+
+    def tod
+      alert "Thank you for your time. Here is Tod to talk about Neauraquarium: Evolving Neural Networks though ECO System Simulation."
     end
 
     def introduction
