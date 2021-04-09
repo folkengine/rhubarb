@@ -5,15 +5,28 @@ require "rhubarb"
 require "slop"
 
 opts = Slop.parse do |o|
-  o.integer "-g", "--go", "Do a run", default: 5
+  o.integer "-g", "--go", "Do a run", default: 10000
   o.bool "-s", "--short", "short syllables only"
   o.bool "-c", "--cyrillic", "include cyrillic words"
+  o.bool "-a", "--audit", "Audit the events" do
+    auditor = Rhubarb::Bookworm.new
+    auditor.read
+    exit
+  end
+  o.bool "-f", "--failure", "say failure messages" do
+    loop do
+      orator = Rhubarb::Orator.new
+      orator.failure
+    end
+    exit
+  end
   o.bool "-i", "--introduce", "Introduces Rhubarb" do
     Rhubarb::Orator.introduction
     exit
   end
-  o.bool "-t", "--tod", "Introduces Tod" do
-    Rhubarb::Orator.tod
+  o.bool "-m", "--mothball", "Mothball the existing log file" do
+    auditor = Rhubarb::Bookworm.new
+    auditor.archive
     exit
   end
   o.bool "-p", "--persona", "list off featured voices" do
@@ -24,11 +37,8 @@ opts = Slop.parse do |o|
     Rhubarb::Orator.roll_call
     exit
   end
-  o.bool "-f", "--failure", "say failure messages" do
-    loop do
-      orator = Rhubarb::Orator.new
-      orator.failure
-    end
+  o.bool "-t", "--tod", "Introduces Tod" do
+    Rhubarb::Orator.tod
     exit
   end
   o.on "-v", "--version", "print the version" do
@@ -39,4 +49,7 @@ end
 
 if opts.go?
   Rhubarb.go(count: opts[:go].to_i, cyrillic: opts.cyrillic?, short: opts.short?)
+else
+  puts "Rhubarb v.#{Rhubarb::VERSION}"
+  puts opts
 end

@@ -7,6 +7,7 @@ gemspec
 
 gem "httparty", "~> 0.18.1"
 gem "mac-say", "~> 0.2.1"
+gem "pg", "~> 0.18.4"
 gem "random_name_generator", "~> 2.0"
 gem "slop", "~> 4.8", ">= 4.8.2"
 gem "translit", "~> 0.1.5"

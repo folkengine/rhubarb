@@ -31,7 +31,7 @@ module Rhubarb
     EXTREME_FAILURE_MESSAGES = [
       "you are a disappointment",
       "I feel sorry for you",
-      "go home",
+      "begin home",
       "please stop",
       "stop already",
       "You're what the French call: 'les incompetents'.",

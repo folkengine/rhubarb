@@ -5,6 +5,8 @@ require "logger"
 require "random_name_generator"
 require "time"
 
+require_relative "rhubarb/auditor"
+require_relative "rhubarb/bookworm"
 require_relative "rhubarb/canon"
 require_relative "rhubarb/orator"
 require_relative "rhubarb/version"
@@ -36,6 +38,7 @@ module Rhubarb
 
   def self.fire_ru(short: false)
     name = short ? RNG_RU.compose(2) : RNG_RU.compose
-    puts name if CANON.fire(name: name, cyrillic: true)
+    print "#{name}\t\t"
+    CANON.fire(name: name, cyrillic: false)
   end
 end

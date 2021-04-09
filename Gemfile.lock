@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rhubarb (0.1.0)
+    rhubarb (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -19,6 +19,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
+    pg (0.18.4)
     rainbow (3.0.0)
     rake (13.0.3)
     random_name_generator (2.0.0)
@@ -60,6 +61,7 @@ PLATFORMS
 DEPENDENCIES
   httparty (~> 0.18.1)
   mac-say (~> 0.2.1)
+  pg (~> 0.18.4)
   rake (~> 13.0)
   random_name_generator (~> 2.0)
   rhubarb!
