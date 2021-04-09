@@ -104,7 +104,7 @@ module Rhubarb
     end
 
     def introduction
-      hello = "Hello, I am Rhubarb, your automated observability test harness. "\
+      hello = "Hello, I am Rhubarb version #{Rhubarb::VERSION}, your automated observability test harness. "\
         "I am here to ensure that your program is performing at acceptable parameters."
 
       hard = "I am hard but I am fair. You will not like me, but understand that what I am "\
