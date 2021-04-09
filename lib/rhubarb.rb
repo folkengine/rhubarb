@@ -30,7 +30,8 @@ module Rhubarb
 
   def self.fire(short: false)
     name = short ? RNG.compose(2) : RNG.compose
-    puts name if CANON.fire(name: name, cyrillic: false)
+    print "#{name}\t\t"
+    CANON.fire(name: name, cyrillic: false)
   end
 
   def self.fire_ru(short: false)

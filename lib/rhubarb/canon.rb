@@ -26,7 +26,9 @@ module Rhubarb
 
     def fire(name: RandomNameGenerator.flip_mode.compose, cyrillic: false)
       begin
-        HTTParty.get(generate_url(name))
+        uri = generate_url(name)
+        puts "HTTP GET #{uri}"
+        HTTParty.get(uri)
         name(name: name, cyrillic: cyrillic)
         @logger.info name
         true
